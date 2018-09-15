@@ -2,15 +2,16 @@ import React from "react";
 import "./nav.css";
 
 const Nav = props => (
-  <nav>
-    <ul>
-      <li id="rightWrong">{props.rightWrong}</li>
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <ul className="navbar-nav mr-auto">
+      <li className="nav-item" id="rightWrong">{props.rightWrong}</li>
 
-      <li id="currrentScore">Current Score: {props.score}</li>
+      <li className="nav-item" id="currrentScore">Current Score: {props.score}</li>
 
-      <li id="topScore">Top Score: {props.topScore}</li>
+      <li className="nav-item" id="topScore">Top Score: {props.topScore}</li>
     </ul>
   </nav>
 );
 
 export default Nav;
+

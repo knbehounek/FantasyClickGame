@@ -6,6 +6,13 @@ import Title from "./components/title";
 import fantasy from "./fantasy.json";
 import "./App.css";
 
+function shuffleDragons(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
 
 class App extends Component {
   // Set this.state
@@ -13,6 +20,7 @@ class App extends Component {
     fantasy,
     currentScore: 0,
     topScore: 0,
+    rightWrong: "",
     clicked: [],
   };
 
@@ -20,7 +28,9 @@ class App extends Component {
     if (this.state.clicked.indexOf(id) === -1) {
       this.handleIncrement();
       this.setState({ clicked: this.state.clicked.concat(id) });
-    } 
+    } else {
+      this.handleReset();
+    }
   };
 
   handleIncrement = () => {
@@ -34,7 +44,22 @@ class App extends Component {
     }
     else if (newScore === 12) {
       this.setState({ rightWrong: "You win!" });
-    }
+    } this.handleShuffle();
+  };
+
+  handleReset = () => {
+    this.setState({
+      currentScore: 0,
+      topScore: this.state.topScore,
+      rightWrong: "Ouch! Need some Aloe?",
+      clicked: []
+    });
+    this.handleShuffle();
+  };
+
+  handleShuffle = () => {
+    let shuffledDragon = shuffleDragons(fantasy);
+    this.setState({ fantasy: shuffledDragon });
   };
 
 
@@ -56,6 +81,8 @@ class App extends Component {
                   key={dragon.id}
                   handleClick={this.handleClick}
                   handleIncrement={this.handleIncrement}
+                  handleReset={this.handleReset}
+                  handleShuffle={this.handleShuffle}
                   id={dragon.id}
                   image={dragon.image}
                 />              

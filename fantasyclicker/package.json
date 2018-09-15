@@ -2,12 +2,15 @@
   "name": "fantasyclicker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://knbehounek.github.io/FantasyClickGame",
   "dependencies": {
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-scripts": "1.1.5"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+"deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
